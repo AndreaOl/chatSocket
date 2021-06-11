@@ -16,7 +16,7 @@ def client_handler():
     global sock, stop
     while(True):
         string = input()
-        sock.sendall(bytes(string))
+        sock.sendall(bytes(string, "utf-8"))
         if(string == "quit"):
             print("QUIT SIIIIII\n")
             stop = 1
@@ -45,7 +45,7 @@ def main(addr: str):
         print("Create thread error!\n")
 
     while(True):
-        buffer = sock.recv(1024).decode()
+        buffer = str(sock.recv(1024), "utf-8")
         if(len(buffer) != 0):
             print("%s\n" % buffer)
         if(stop == 1):
